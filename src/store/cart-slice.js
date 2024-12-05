@@ -16,23 +16,28 @@ const cartSlice = createSlice({
                     id: newItems.id,
                     price: newItems.price,
                     quantity: 1,
-                    totalPrice: newItems.totalPrice,
+                    totalPrice: newItems.price,
                     title: newItems.title
                 })
             } else { // adding more item and update price if click on existing item
                 existingItem.quantity++;
-                existingItem.totalPrice = existingItem.totalPrice + newItems.totalPrice;
+                existingItem.totalPrice = existingItem.totalPrice + newItems.price;
             }
         },
 
         removeItemFromCart(state, action) {
             const id = action.payload;
-            const existingItem = state.items.find(item => item.id === id);
+            const existingItem = state.items.find((item) => item.id === id);
+            console.log(existingItem);
             state.totalQuantity--;
             if (existingItem === 1) {
-                state.items = state.items.filter(item => item.id === id); //keeping all items except deleting one
+                state.items = state.items.filter((item) => item.id !== id); //keeping all items except deleting one
             } else {
                 existingItem.quantity--;
+                existingItem.totalPrice = existingItem.totalPrice - existingItem.price;
+                if (existingItem.quantity === 0) {
+                    state.items = state.items.filter((item) => item.id !== id);
+                }
             }
 
         }
