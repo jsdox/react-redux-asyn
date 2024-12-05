@@ -15,12 +15,12 @@ const cartSlice = createSlice({
                     itemId: newItems.id,
                     price: newItems.price,
                     quantity: 1,
-                    totalPrice: newItems.price,
+                    totalPrice: newItems.totalPrice,
                     name: newItems.name
                 })
             } else { // adding more item and update price if click on existing item
-                existingItem.quantity++,
-                existingItem,totalPrice = existingItem.totalPrice + newItems.totalPrice;
+                existingItem.quantity++;
+                existingItem.totalPrice = existingItem.totalPrice + newItems.totalPrice;
             }
         },
 
