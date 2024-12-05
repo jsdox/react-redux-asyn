@@ -9,15 +9,15 @@ const cartSlice = createSlice({
     reducers: {
         addItemsToCart(state, action) {
             const newItems = action.payload; //get data
-            const existingItem = state.items.find(item => item.id === newItems.is); //check if item already exists
+            const existingItem = state.items.find(item => item.id === newItems.id); //check if item already exists
             state.totalQuantity++;
             if (!existingItem) {
                 state.items.push({
-                    itemId: newItems.id,
+                    id: newItems.id,
                     price: newItems.price,
                     quantity: 1,
                     totalPrice: newItems.totalPrice,
-                    name: newItems.name
+                    title: newItems.title
                 })
             } else { // adding more item and update price if click on existing item
                 existingItem.quantity++;
