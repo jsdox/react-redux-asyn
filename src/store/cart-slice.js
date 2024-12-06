@@ -28,7 +28,6 @@ const cartSlice = createSlice({
         removeItemFromCart(state, action) {
             const id = action.payload;
             const existingItem = state.items.find((item) => item.id === id);
-            console.log(existingItem);
             state.totalQuantity--;
             if (existingItem === 1) {
                 state.items = state.items.filter((item) => item.id !== id); //keeping all items except deleting one
